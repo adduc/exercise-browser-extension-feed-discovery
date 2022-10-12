@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "RSS Scraper",
     "version": "0.1",
-    "description": "Scrapes pages for RSS Feeds, posts found feed URLs to feeds.128.io",
+    "description": "Scrapes pages for RSS Feeds, posts found feed URLs to hard-coded endpoint",
     "background": {
         "persistent": false,
         "scripts": ["background.js"]
