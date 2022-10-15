@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "RSS Scraper",
-    "version": "0.1",
+    "name": "Feed-Discovery",
+    "version": "0.2",
     "description": "Scrapes pages for RSS Feeds, posts found feed URLs to hard-coded endpoint",
     "background": {
         "persistent": false,
@@ -11,7 +11,15 @@
         "matches": ["<all_urls>"],
         "js": ["content.js"]
     }],
-    "permissions": [
-        "webNavigation"
-    ]    
+    "options_ui": {
+        "page": "options.html",
+        "browser_style": true
+    },
+    "permissions": ["storage"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "feed-discovery@128.io",
+            "strict_min_version": "57.0a1"
+        }
+    }
 }

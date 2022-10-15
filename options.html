@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        :root {
+            --background: #ededf0;
+            --foreground: #23222b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #23222b;
+                --foreground: #ededf0;
+            }
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--foreground);
+            height: 100%;
+            margin: 10px 0;
+        }
+
+        form {
+            display: flex;
+        }
+        form input {
+            flex-grow: 1;
+            margin: 0 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="endpoint">Endpoint</label>
+        <input type="text" id="endpoint" name="endpoint" />
+        <button type="submit">Save</button>
+    </form>
+    <script src="options.js"></script>
+</body>
+
+</html>

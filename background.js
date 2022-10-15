@@ -7,7 +7,7 @@ async function messageHandler(msg, sender) {
 }
 
 async function updatePageAction(tab, links) {
-    await fetch('https://rss-discovery.home.adduc.win/', {
+    await fetch(endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,6 +26,19 @@ async function refreshAllTabsPageAction() {
 	tabs.forEach(scanPage);
 }
 
+async function loadOptions() {
+    let gettingItem = browser.storage.sync.get('endpoint');
+    gettingItem.then((res) => {
+        endpoint = res.endpoint || DEFAULT_ENDPOINT;
+    });
+}
+
+const DEFAULT_ENDPOINT = 'https://rss-discovery.home.adduc.win/';
+let endpoint = '';
+
 browser.runtime.onMessage.addListener(messageHandler);
 browser.tabs.onUpdated.addListener(scanPage);
+browser.storage.sync.onChanged.addListener(loadOptions);
+
+loadOptions();
 refreshAllTabsPageAction();
