@@ -24,7 +24,7 @@ function scanThisPage() {
     const FEED_LINKS = LINKS.filter(filterLink).map(mapLink);
 
     if (FEED_LINKS.length > 0) {
-        browser.runtime.sendMessage({
+        chrome.runtime.sendMessage({
             type: 'feeds',
             links: FEED_LINKS,
         }).catch(() => { });
@@ -40,5 +40,5 @@ function messageHandler(msg) {
 	}
 }
 
-browser.runtime.onMessage.addListener(messageHandler);
+chrome.runtime.onMessage.addListener(messageHandler);
 scanThisPage();

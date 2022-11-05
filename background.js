@@ -18,17 +18,17 @@ async function updatePageAction(tab, links) {
 
 function scanPage(tab) {
     const tabId = typeof (tab) === 'number' ? tab : tab.id || tab.tabId;
-    browser.tabs.sendMessage(tabId, { type: 'scan' }).catch(() => { });
+    chrome.tabs.sendMessage(tabId, { type: 'scan' }).catch(() => { });
 }
 
 async function refreshAllTabsPageAction() {
-	const tabs = await browser.tabs.query({});
-	tabs.forEach(scanPage);
+	chrome.tabs.query({}, function (tabs) {
+        tabs.forEach(scanPage);
+    });
 }
 
 async function loadOptions() {
-    let gettingItem = browser.storage.sync.get('endpoint');
-    gettingItem.then((res) => {
+    chrome.storage.sync.get('endpoint', function(res) {
         endpoint = res.endpoint || DEFAULT_ENDPOINT;
     });
 }
@@ -36,9 +36,9 @@ async function loadOptions() {
 const DEFAULT_ENDPOINT = 'https://rss-discovery.home.adduc.win/';
 let endpoint = '';
 
-browser.runtime.onMessage.addListener(messageHandler);
-browser.tabs.onUpdated.addListener(scanPage);
-browser.storage.sync.onChanged.addListener(loadOptions);
+chrome.runtime.onMessage.addListener(messageHandler);
+chrome.tabs.onUpdated.addListener(scanPage);
+chrome.storage.sync.onChanged.addListener(loadOptions);
 
 loadOptions();
 refreshAllTabsPageAction();
