@@ -1,6 +1,6 @@
-# Exercise: Firefox Extension: Feed Discovery
+# Exercise: Browser Extension: Feed Discovery
 
-Firefox extension to post found RSS feeds to a hard-coded website.
+Browser extension to post found RSS feeds to a hard-coded website.
 
 Derived from the [Awesome RSS] Firefox extension.
 
