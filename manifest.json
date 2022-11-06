@@ -1,11 +1,10 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Feed-Discovery",
     "version": "0.2",
     "description": "Scrapes pages for RSS Feeds, posts found feed URLs to hard-coded endpoint",
     "background": {
-        "persistent": false,
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
     },
     "content_scripts": [{
         "matches": ["<all_urls>"],
